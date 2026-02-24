@@ -31,10 +31,16 @@
 
 ---
 
-> **Personal Use Notice**
-> This fork is adapted for personal self-hosted use on a home Kubernetes cluster and is **not intended for production deployment**. It comes with no SLA, no security hardening guarantees, and no support. Use at your own risk. For a production-grade deployment, use the official [worldmonitor.app](https://worldmonitor.app) or deploy to Vercel as described below.
->
-> **Security reminder:** API keys and secrets must never be stored in plain text or committed to version control. `k8s/secret.yaml` is gitignored for this reason — always use the provided `k8s/secret.template.yaml` as a starting point and keep your filled-in `secret.yaml` local only. For stronger protection consider [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) or an external secrets manager. See the [Kubernetes deployment section](#option-4-kubernetes-self-hosted) for full details.
+## ⚠️ Personal Fork — Not for Production
+
+| | |
+|---|---|
+| 🏠 **Deployment target** | Home Kubernetes cluster — personal self-hosted use only |
+| 🚫 **Not suitable for** | Production, public-facing, or multi-user deployments |
+| ⚙️ **Guarantees** | No SLA · no security hardening · no support |
+| 🌐 **Production alternative** | Use [worldmonitor.app](https://worldmonitor.app) or deploy to [Vercel](#option-1-deploy-to-vercel-recommended) |
+
+> 🔐 **Secrets rule:** `k8s/secret.yaml` is **gitignored** and must **never** be committed to version control. Copy `k8s/secret.template.yaml`, fill in your keys, and apply locally. For stronger protection: [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) · [External Secrets Operator](https://external-secrets.io/) · Vault / AWS SSM → full guide in the [K8s deployment section](#option-4-kubernetes-self-hosted).
 
 ---
 
