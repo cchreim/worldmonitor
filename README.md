@@ -31,6 +31,13 @@
 
 ---
 
+> **Personal Use Notice**
+> This fork is adapted for personal self-hosted use on a home Kubernetes cluster and is **not intended for production deployment**. It comes with no SLA, no security hardening guarantees, and no support. Use at your own risk. For a production-grade deployment, use the official [worldmonitor.app](https://worldmonitor.app) or deploy to Vercel as described below.
+>
+> **Security reminder:** API keys and secrets must never be stored in plain text or committed to version control. `k8s/secret.yaml` is gitignored for this reason — always use the provided `k8s/secret.template.yaml` as a starting point and keep your filled-in `secret.yaml` local only. For stronger protection consider [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) or an external secrets manager. See the [Kubernetes deployment section](#option-4-kubernetes-self-hosted) for full details.
+
+---
+
 ## Why World Monitor?
 
 | Problem                            | Solution                                                                                                   |
@@ -1301,7 +1308,34 @@ This runs the frontend without the API layer. Panels that require server-side pr
 | **Linux x86_64**       | Full support            | Works with `vercel dev` for local development. Desktop .AppImage available for x86_64. WebKitGTK rendering uses DMA-BUF with fallback to SHM for GPU compatibility. Font stack includes DejaVu Sans Mono and Liberation Mono for consistent rendering across distros |
 | **macOS**              | Works with `vercel dev` | Full local development                                                                                                         |
 | **Raspberry Pi / ARM** | Partial                 | `vercel dev` edge runtime emulation may not work on ARM. Use Option 1 (deploy to Vercel) or Option 3 (static frontend) instead |
-| **Docker**             | Planned                 | See [Roadmap](#roadmap)                                                                                                        |
+| **Docker / K8s**       | Supported (this fork)   | Single-image deployment with nginx + Node.js sidecar. See [Option 4](#option-4-kubernetes-self-hosted) below.                  |
+
+### Option 4: Kubernetes (Self-Hosted)
+
+This fork ships a `Dockerfile`, `nginx.conf`, `entrypoint.sh`, and `k8s/` manifests for running a fully self-contained instance on a home Kubernetes cluster.
+
+**Build and deploy:**
+```bash
+# Build image (from app/)
+docker build -t worldmonitor:fullstack .
+
+# Apply namespace + service first
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/deployment.yaml
+```
+
+**Secrets:**
+
+> ⚠️ **Never store API keys in plain text in `k8s/secret.yaml`.**
+> `k8s/secret.yaml` is gitignored intentionally — it must never be committed to version control.
+> Use the provided template to create your local secrets file:
+> ```bash
+> cp k8s/secret.template.yaml k8s/secret.yaml
+> # Fill in your keys, then:
+> kubectl apply -f k8s/secret.yaml
+> ```
+> For stronger security, consider using [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets), [External Secrets Operator](https://external-secrets.io/), or a secrets manager (Vault, AWS SSM) instead of a plain `stringData` secret.
 
 ### Railway Relay (Optional)
 
