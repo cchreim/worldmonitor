@@ -39,6 +39,9 @@ spec:
             # AIS relay runs inside the pod on port 3004
             - name: WS_RELAY_URL
               value: "http://127.0.0.1:3004"
+            # Relay is pod-internal (nginx proxies localhost), no external auth needed
+            - name: ALLOW_UNAUTHENTICATED_RELAY
+              value: "true"
           livenessProbe:
             httpGet:
               path: /healthz

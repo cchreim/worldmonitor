@@ -198,7 +198,7 @@ async function fetchRawRelaySnapshot(includeCandidates: boolean): Promise<unknow
   }
 
   // Same-origin fallback: relay available via nginx /ais/ proxy (K8s deployments)
-  if (isClientRuntime && !RAILWAY_SNAPSHOT_URL && !isLocalhost) {
+  if (isClientRuntime && !DIRECT_RAILWAY_SNAPSHOT_URL && !isLocalhost) {
     const sameOrigin = await fetch(`/ais/snapshot${query}`, { headers: { Accept: 'application/json' } });
     if (sameOrigin.ok) return sameOrigin.json();
   }

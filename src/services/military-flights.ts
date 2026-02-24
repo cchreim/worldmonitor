@@ -634,7 +634,7 @@ export async function fetchMilitaryFlights(): Promise<{
 
     // Fetch from OpenSky — direct relay if configured, otherwise server RPC
     let flights: MilitaryFlight[];
-    if (OPENSKY_BASE_URL) {
+    if (DIRECT_OPENSKY_BASE_URL) {
       flights = await fetchFromOpenSky();
     } else {
       flights = await fetchFromServerRPC();
