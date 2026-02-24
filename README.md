@@ -1,6 +1,6 @@
 # World Monitor
 
-# NOT SUITABLE FOR PRODUCTION — HOME USE ONLY
+# ⚠️ NOT SUITABLE FOR PRODUCTION — HOME USE ONLY ⚠️
 
 **Real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
 
