@@ -31,16 +31,15 @@
 
 ---
 
-## ⚠️ Personal Fork — Not for Production
+## Personal Fork — Not for Production
 
 | | |
 |---|---|
-| 🏠 **Deployment target** | Home Kubernetes cluster — personal self-hosted use only |
-| 🚫 **Not suitable for** | Production, public-facing, or multi-user deployments |
-| ⚙️ **Guarantees** | No SLA · no security hardening · no support |
-| 🌐 **Production alternative** | Use [worldmonitor.app](https://worldmonitor.app) or deploy to [Vercel](#option-1-deploy-to-vercel-recommended) |
+| **Deployment target** | Home Kubernetes cluster — personal self-hosted use only |
+| **Not suitable for** | Production, public-facing, or multi-user deployments |
+| **No Guarantees** | No SLA · no security hardening · no support |
 
-> 🔐 **Secrets rule:** `k8s/secret.yaml` is **gitignored** and must **never** be committed to version control. Copy `k8s/secret.template.yaml`, fill in your keys, and apply locally. For stronger protection: [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) · [External Secrets Operator](https://external-secrets.io/) · Vault / AWS SSM → full guide in the [K8s deployment section](#option-4-kubernetes-self-hosted).
+> **Secrets rule:** `k8s/secret.yaml` is **gitignored** and must **never** be committed to version control. Copy `k8s/secret.template.yaml`, fill in your keys, and apply locally. For stronger protection: [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) · [External Secrets Operator](https://external-secrets.io/) · Vault / AWS SSM → full guide in the [K8s deployment section](#option-4-kubernetes-self-hosted).
 
 ---
 
